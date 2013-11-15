@@ -89,8 +89,15 @@ public class UserViewer extends Component implements
 				drawSkeleton(g, framePosX, framePosY, user);
 
 				// spatial joint's coordinates
-				giveMeSpatialCoordinateJoints(user);
-
+//				giveMeSpatialCoordinateJoints(user);
+				
+				try {
+					createSkeletonInstances(user);
+				} catch (Exception e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		
 			}
 
 			if (user.getSkeleton().getState() == SkeletonState.TRACKED
@@ -170,17 +177,17 @@ public class UserViewer extends Component implements
 						+ toPos.getY().intValue());
 	}
 
-	private void giveMeSpatialCoordinateJoints(UserData user) {
-		JointType[] jointTypes = JointType.values(); // all joints
-		for (JointType j : jointTypes) {
-			com.primesense.nite.SkeletonJoint joint = user.getSkeleton()
-					.getJoint(j);
-			System.out.println("joint = " + joint.getJointType().name()
-					+ "\nX = " + joint.getPosition().getX() + "\tY = "
-					+ joint.getPosition().getY() + "\tZ = "
-					+ joint.getPosition().getZ());
-		}
-	}
+//	private void giveMeSpatialCoordinateJoints(UserData user) {
+//		JointType[] jointTypes = JointType.values(); // all joints
+//		for (JointType j : jointTypes) {
+//			com.primesense.nite.SkeletonJoint joint = user.getSkeleton()
+//					.getJoint(j);
+//			System.out.println("joint = " + joint.getJointType().name()
+//					+ "\nX = " + joint.getPosition().getX() + "\tY = "
+//					+ joint.getPosition().getY() + "\tZ = "
+//					+ joint.getPosition().getZ());
+//		}
+//	}
 
 	public synchronized void onNewFrame(UserTracker tracker) {
 		if (mLastFrame != null) {
